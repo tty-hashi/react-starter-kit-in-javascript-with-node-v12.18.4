@@ -7,7 +7,7 @@ const MessageField = ({ text, setText, name, inputEl }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (text === '') return;
-    pushMessage({ text, name: 'hamu' });
+    pushMessage({ text, name });
     setText('');
   }
   return (

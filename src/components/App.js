@@ -9,8 +9,8 @@ export default () => {
   console.log(name);
   return (
     <div>
-      {/* {name !== '' ? <Main name={name} /> : <SignIn name={name} setName={setName} />} */}
-      {name !== '' ? <Main name={name} /> : <Main name={name} />}
+      {name !== '' ? <Main name={name} /> : <SignIn name={name} setName={setName} />}
+      {/* {name !== '' ? <Main name={name} /> : <Main name={name} />} */}
     </div>
   )
 };

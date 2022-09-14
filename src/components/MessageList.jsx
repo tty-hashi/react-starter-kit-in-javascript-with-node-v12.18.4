@@ -1,13 +1,16 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { List } from '@material-ui/core';
 import { messagesRef } from '../firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import MessageItem from './MessageItem';
 
 const useStyles = makeStyles({
   root: {
     gridRow: 1,
+    overflow: 'auto',
+    width: '100%'
   }
 })
 
@@ -20,7 +23,7 @@ const MessageList = () => {
       if (messages === null) return;
       const entries = Object.entries(messages)
       const newMessages = entries.map(entry => {
-        const [key, ...nameAndText] = entry;
+        const [key, nameAndText] = entry;
         return { key, ...nameAndText };
       });
       setMessages(newMessages);
@@ -28,13 +31,15 @@ const MessageList = () => {
   }, []);
 
   const classes = useStyles();
+  const length = messages.length;
+  console.log(length)
   return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
-        </Grid>
-      </Grid>
-    </div>
+    <List className={classes.root} >
+      {messages.map(({ key, name, text }, index) => {
+        const isLastItem = length === index + 1;
+        return <MessageItem key={key} name={name} text={text} isLastItem={isLastItem} />
+      })}
+    </List>
   )
 }
 

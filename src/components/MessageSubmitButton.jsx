@@ -6,7 +6,7 @@ import { pushMessage } from '../firebase'
 
 const MessageSubmitButton = ({ name, text, setText, inputEl }) => {
   const onClickHandler = () => {
-    pushMessage({ text, name: 'hamu' });
+    pushMessage({ text, name });
     setText('');
     inputEl.current.focus();
   }
