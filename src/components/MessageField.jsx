@@ -3,7 +3,7 @@ import React from 'react'
 
 import { pushMessage } from '../firebase';
 
-const MessageField = ({ text, setText, name }) => {
+const MessageField = ({ text, setText, name, inputEl }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (text === '') return;
@@ -12,7 +12,7 @@ const MessageField = ({ text, setText, name }) => {
   }
   return (
     <form onSubmit={formSubmitHandler}>
-      <TextField fullWidth={true} value={text} onChange={e => setText(e.target.value)} autoFocus />
+      <TextField inputRef={inputEl} fullWidth={true} value={text} onChange={e => setText(e.target.value)} autoFocus />
     </form>
   )
 }
