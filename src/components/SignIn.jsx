@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function Copyright() {
   return (
@@ -43,7 +45,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
-  const { name, setName } = props;
+  const [disabled, setDisabled] = useState(true)
+  const [string, setString] = useState('');
+
+  useEffect(() => {
+    string ? setDisabled(false) : setDisabled(true)
+  }, [string])
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -52,8 +59,8 @@ export default function SignIn(props) {
           ようこそ
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus value={name} onChange={e => setName(e.target.value)} />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={name === '' && true}>
+          <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus value={string} onChange={e => setString(e.target.value)} />
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={disabled}>
             はじめる
           </Button>
         </form>
