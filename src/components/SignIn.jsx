@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
-
+  const { name, setName } = props;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -52,8 +52,8 @@ export default function SignIn() {
           ようこそ
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
+          <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus value={name} onChange={e => setName(e.target.value)} />
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={name === '' && true}>
             はじめる
           </Button>
         </form>
