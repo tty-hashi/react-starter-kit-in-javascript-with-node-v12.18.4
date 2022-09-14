@@ -12,7 +12,7 @@ const MessageField = ({ text, setText, name }) => {
   }
   return (
     <form onSubmit={formSubmitHandler}>
-      <TextField fullWidth={true} value={text} onChange={e => setText(e.target.value)} />
+      <TextField fullWidth={true} value={text} onChange={e => setText(e.target.value)} autoFocus />
     </form>
   )
 }
