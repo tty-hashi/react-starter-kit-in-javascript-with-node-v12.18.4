@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
+  const { name, setName } = props;
   const [disabled, setDisabled] = useState(true)
   const [string, setString] = useState('');
 
@@ -60,7 +61,7 @@ export default function SignIn(props) {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus value={string} onChange={e => setString(e.target.value)} />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={disabled}>
+          <Button type="button" fullWidth variant="contained" color="primary" className={classes.submit} disabled={disabled} onClick={() => setName(string)}>
             はじめる
           </Button>
         </form>
