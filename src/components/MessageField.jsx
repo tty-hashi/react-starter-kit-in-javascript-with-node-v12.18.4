@@ -1,13 +1,14 @@
-import { formatMs, TextField } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import React from 'react'
+
+import { pushMessage } from '../firebase';
 
 const MessageField = ({ text, setText, name }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (text === '') return;
-    console.log('push message')
-
-    setText('')
+    pushMessage({ text, name: 'hamu' });
+    setText('');
   }
   return (
     <form onSubmit={formSubmitHandler}>
