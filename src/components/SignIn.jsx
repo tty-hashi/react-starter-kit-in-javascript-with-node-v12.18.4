@@ -52,6 +52,14 @@ export default function SignIn(props) {
   useEffect(() => {
     string ? setDisabled(false) : setDisabled(true)
   }, [string])
+  const setNameHandler = () => {
+    setName(string);
+    setString('');
+  }
+  const onSubmitHandle = (e) => {
+    e.preventDefault();
+    setNameHandler();
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,9 +67,9 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           ようこそ
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmitHandle}>
           <TextField variant="outlined" margin="normal" required fullWidth id="name" label="ニックネーム" name="name" autoFocus value={string} onChange={e => setString(e.target.value)} />
-          <Button type="button" fullWidth variant="contained" color="primary" className={classes.submit} disabled={disabled} onClick={() => setName(string)}>
+          <Button type="button" fullWidth variant="contained" color="primary" className={classes.submit} disabled={disabled} onClick={setNameHandler}>
             はじめる
           </Button>
         </form>
